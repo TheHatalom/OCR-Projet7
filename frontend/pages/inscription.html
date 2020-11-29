@@ -31,23 +31,21 @@
             <h1>Inscription</h1>
         </div>
 
-        <div class="container">
-            <form method="post" action="../javascript/inscription.js">
+            <div class="container">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" placeholder="Enter username" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">S'inscrire</button>
-            </form>
+                <button id="signupBtn" class="btn btn-primary">S'inscrire</button>
+            </div>
         </div>
 
         <script src="../javascript/request.js"></script>

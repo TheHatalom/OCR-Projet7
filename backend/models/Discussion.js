@@ -30,7 +30,6 @@ const Discussion = sequelize.define('Discussion',
     tableName:"groupomania_discussion"
 });
 
-Discussion.belongsTo(User, {foreignKey: 'username'});
 
 
 module.exports = Discussion;

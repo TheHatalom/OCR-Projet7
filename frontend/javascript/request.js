@@ -56,7 +56,7 @@ class Request
         {
             //Requête API
             request.open("GET", this.api + action);
-            request.setRequestHeader("Authorization", "Bearer " + token);
+            //request.setRequestHeader("Authorization", "Bearer " + token);
             request.send();
 
             return traitement;
@@ -84,23 +84,23 @@ class Request
                 }
             };
         });
-
+/*
         //Get token
         var token = sessionStorage.getItem("token");
         if(token != null)
-        {
+        {*/
             //Requête API
             request.open("POST", this.api + action);
             request.setRequestHeader("Content-Type", "application/json");
-            request.setRequestHeader("Authorization", "Bearer " + token);
+            //request.setRequestHeader("Authorization", "Bearer " + token);
             request.send(JSON.stringify(body));
 
-            return traitement;
+            return traitement;/*
         }
         else
         {
             window.location.assign("./connexion.html");
-        }
+        }*/
     }
 
     put(action, body) 
@@ -121,23 +121,23 @@ class Request
             };
         });
 
-
+/*
         //Get token
         var token = sessionStorage.getItem("token");
         if(token != null)
-        {
+        {*/
             //Requête API
             request.open("POST", this.api + action);
             request.setRequestHeader("Content-Type", "application/json");
-            request.setRequestHeader("Authorization", "Bearer " + token);
+            //request.setRequestHeader("Authorization", "Bearer " + token);
             request.send(JSON.stringify(body));
 
-            return traitement;
+            return traitement;/*
         }
         else
         {
             window.location.assign("./connexion.html");
-        }
+        }*/
     }
 
     delete(action) 
@@ -158,22 +158,22 @@ class Request
             };
         });
 
-
+/*
         //Get token
         var token = sessionStorage.getItem("token");
         if(token != null)
-        {
+        {*/
             //Requête API
             request.open("POST", this.api + action);
             request.setRequestHeader("Content-Type", "application/json");
-            request.setRequestHeader("Authorization", "Bearer " + token);
+            //request.setRequestHeader("Authorization", "Bearer " + token);
             request.send(JSON.stringify(body));
 
-            return traitement;
+            return traitement;/*
         }
         else
         {
             window.location.assign("./connexion.html");
-        }
+        }*/
     }
 }

@@ -27,9 +27,11 @@ const Message = sequelize.define('Message',
 }, 
 {
     tableName:"groupomania_message"
-});
+}); 
  
-Message.belongsTo(User, {foreignKey: 'id'});
+Message.belongsTo(User, {foreignKey: 'userId'});
+User.hasMany(Message, {foreignKey: 'userId'});
+
 Message.belongsTo(Discussion, {foreignKey: 'discussionId'});
 Discussion.hasMany(Message, {foreignKey: 'discussionId'});
 

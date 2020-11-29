@@ -6,8 +6,8 @@ exports.getOne = (req, res, next) =>
 {   
     Discussion.findOne(
     {
-        _id: req.params.id,
-        include: [Message]
+        include: [Message],
+        where: {id: req.params.id}
     })
     .then((discussion) => 
     {

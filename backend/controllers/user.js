@@ -48,30 +48,50 @@ exports.login = (req, res, next) =>
         }
         bcrypt.compare(req.body.password, user.password)
         .then(valid => 
+        {
+            if (!valid) 
             {
-                if (!valid) 
-                {
-                    return res.status(401).json(
-                    { 
-                        error: 'Mot de passe incorrect !' 
-                    });
-                }
-                res.status(200).json(
-                {
-                    userId: user._id,
-                    token: jwt.sign(
-                    { userId: user._id },
-                    'RANDOM_TOKEN_SECRET',
-                    { expiresIn: '24h' })
+                return res.status(401).json(
+                { 
+                    error: 'Mot de passe incorrect !' 
                 });
-            })
-            .catch(error => res.status(500).json(
-            { 
-                error 
-            }));
+            }
+            res.status(200).json(
+            {
+                userId: user._id,
+                token: jwt.sign(
+                { userId: user._id },
+                'RANDOM_TOKEN_SECRET',
+                { expiresIn: '24h' })
+            });
         })
         .catch(error => res.status(500).json(
         { 
             error 
         }));
+    })
+    .catch(error => res.status(500).json(
+    { 
+        error 
+    }));
+};
+
+exports.getName = (req, res, next) => 
+{
+    User.findOne(
+    {
+        where: {id: req.params.id}
+    })
+    .then((user) => 
+    {
+        res.status(200).json(user.username);
+    }
+    )
+    .catch((error) => 
+    {
+        res.status(404).json(
+        {
+            error: error
+        });
+    });
 };

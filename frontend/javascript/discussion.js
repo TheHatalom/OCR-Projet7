@@ -7,7 +7,7 @@ class Discussion extends Request
 
     getOne(id)
     {
-        return this.get("discussion/id");
+        return this.get("discussion/" + id);
     }
 
     getAllLimit()

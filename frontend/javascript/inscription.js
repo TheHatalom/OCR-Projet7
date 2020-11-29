@@ -1,19 +1,31 @@
 var userManager = new User();
 
-//Récupère les paramètres
-var signupBody = 
-{
-    username:url.searchParams.get("username"),
-    email:url.searchParams.get("email"),
-    password:url.searchParams.get("password")
-};
+var username;
+var email;
+var password;
+var signupBody;
 
-userManager.signup(signupBody).then((result) =>
+// IIFE function -> appelée quand elle est créée
+(function()
 {
-    //redirection vers la page de connexion
-    window.location.assign("./connexion.html");
-})
-.catch(() =>
-{
-    console.log("ERREUR dans la requête POST !");
-});
+    document.getElementById('signupBtn').addEventListener("click", function()
+    {
+        username = document.getElementById('username').value;
+        email = document.getElementById('email').value;
+        password = document.getElementById('password').value;
+
+        signupBody = { username:username, email:email, password:password };
+
+        userManager.signup(signupBody).then(() =>
+        {
+            //redirection vers la page de connexion
+            window.location.assign("./connexion.html");
+        })
+        .catch(() =>
+        {
+            console.log("ERREUR dans la requête POST signup !");
+        });
+    });
+})();
+
+
