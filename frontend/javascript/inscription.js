@@ -14,7 +14,7 @@ var signupBody;
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
 
-        signupBody = { username:username, email:email, password:password };
+        signupBody = { "username":username, "email":email, "password":password };
 
         userManager.signup(signupBody).then(() =>
         {

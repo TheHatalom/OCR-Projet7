@@ -33,32 +33,30 @@
             </div>
         </nav>
 
-        <br>
-        <br>
-
-        <div class="container">
-            <div class="col text-center" id="detailDiscussion"></div>
+        <div class="container text-center title">
+            <h3>Modification d'une discussion</h3>
         </div>
 
         <br>
-
-        <button class="btn btn-danger" id="deleteDiscussionBtn">Supprimer la discussion</button>
-
-        <br>
         <br>
 
         <div class="container">
-            <a href="./createMessage.html">
-                <button class="btn btn-primary">Envoyer un message</button>
-            </a>
+            <div class="form-group">
+                <label for="title">Titre de la discussion</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter title" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message de la discussion</label>
+                <input type="text" class="form-control" id="message" placeholder="Enter message" required>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" id="updateDiscussionBtn">Modifier la discussion</button>
+                <a href="javascript:history.back()" type="button" class="btn btn-danger justify-content-end">Annuler</a>
+            </div>
         </div>
 
         <script src="../javascript/request.js"></script>
         <script src="../javascript/discussion.js"></script>
-        <script src="../javascript/detailDiscussion.js"></script>
         <script src="../javascript/updateDiscussion.js"></script>
-        <script src="../javascript/deleteDiscussion.js"></script>
-        <script src="../javascript/message.js"></script>
-        <script src="../javascript/deleteMessage.js"></script>
     </body>
 </html>

@@ -30,7 +30,8 @@ const Discussion = sequelize.define('Discussion',
     tableName:"groupomania_discussion"
 });
 
-
+Discussion.belongsTo(User, {foreignKey: 'userId'});
+User.hasMany(Discussion, {foreignKey: 'userId'});
 
 module.exports = Discussion;
 

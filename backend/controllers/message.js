@@ -26,8 +26,9 @@ exports.create = (req, res, next) =>
         ...messageObject
     });
     message.save()
-    .then(() => res.status(201).json(
-    { 
+    .then((result) => res.status(201).json(
+    {
+        id: result.id,
         message: 'Message enregistrée !'
     }))
     .catch(error => res.status(400).json(

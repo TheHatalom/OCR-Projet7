@@ -9,13 +9,13 @@ discussionManager.getAll().then((result) =>
         para.setAttribute("class", "row-6 index-desc");
         para.innerHTML = 'Discussion : '+ discussion.title;
 
-        var link = document.createElement("a");
-        link.setAttribute("class", "btn btn-primary");
-        link.setAttribute("href", "detailDiscussion.html?Id=" + discussion.id);
-        link.innerHTML = 'Aller à la discussion';
+        var btnDetail = document.createElement("a");
+        btnDetail.setAttribute("class", "btn btn-primary");
+        btnDetail.setAttribute("href", "detailDiscussion.html?Id=" + discussion.id);
+        btnDetail.innerHTML = 'Aller à la discussion';
 
         document.getElementById("listDiscussion").appendChild(para);
-        document.getElementById("listDiscussion").appendChild(link);
+        document.getElementById("listDiscussion").appendChild(btnDetail);
     }
 })
 .catch(() =>

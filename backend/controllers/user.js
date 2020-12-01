@@ -7,8 +7,6 @@ const User = require('../models/User');
 
 exports.signup = (req, res, next) => 
 { 
-    console.log(req.body);
-    console.log(req.body.password);
     bcrypt.hash(req.body.password, 10)
     .then(hash => 
     {
@@ -36,7 +34,7 @@ exports.signup = (req, res, next) =>
 
 exports.login = (req, res, next) => 
 {
-    User.findOne({ email: req.body.email }, req.body.password)
+    User.findOne({ where: {email: req.body.email }})
     .then(user => 
     {
         if (!user) 
@@ -58,7 +56,7 @@ exports.login = (req, res, next) =>
             }
             res.status(200).json(
             {
-                userId: user._id,
+                userId: user.id,
                 token: jwt.sign(
                 { userId: user._id },
                 'RANDOM_TOKEN_SECRET',

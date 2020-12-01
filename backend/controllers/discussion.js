@@ -1,12 +1,17 @@
 const Discussion = require('../models/Discussion');
 const Message = require('../models/Message');
+const User = require('../models/User');
 const fs = require('fs');
 
 exports.getOne = (req, res, next) => 
 {   
     Discussion.findOne(
     {
-        include: [Message],
+        include: 
+        {
+            model: Message,
+            include:User
+        },
         where: {id: req.params.id}
     })
     .then((discussion) => 
@@ -21,7 +26,7 @@ exports.getOne = (req, res, next) =>
             error: error
         });
     });
-};
+}; 
 
 exports.getAll = (req, res, next) => 
 {
@@ -69,18 +74,24 @@ exports.create = (req, res, next) =>
         ...discussionObject
     });
     discussion.save()
-    .then(() => res.status(201).json(
-    { 
+    .then((result) => res.status(201).json(
+    {
+        id: result.id,
         message: 'Discussion enregistrée !'
     }))
-    .catch(error => res.status(400).json(
-    { 
-        error: error
-    }));
+    .catch(error =>
+    {
+        console.log(error);
+        res.status(400).json(
+        { 
+            error: error
+        });
+    });
 };
 
 exports.modify = (req, res, next) => 
 {
+    console.log(req.body);
     const discussionObject = req.body;
     Discussion.update(
     { 
@@ -89,8 +100,9 @@ exports.modify = (req, res, next) =>
     { 
         where: {id: req.params.id} 
     })
-    .then(() => res.status(200).json(
-    { 
+    .then((result) => res.status(200).json(
+    {
+        id: result.id,
         message: 'Discussion modifiée !'
     }))
     .catch(error => res.status(400).json(

@@ -1,0 +1,16 @@
+/*body
+{
+    background-image: url("./images/icon.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}*/
+
+.logo
+{
+    height: 80px;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active
+{
+    color: #091F43;
+}

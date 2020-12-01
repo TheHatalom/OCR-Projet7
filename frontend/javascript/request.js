@@ -13,10 +13,10 @@ class Request
         {
             request.onreadystatechange = function () 
             {
-                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) 
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 201) 
                 {
                     resolve(JSON.parse(this.responseText));
-                } else if (this.readyState == XMLHttpRequest.DONE && this.status != 200) 
+                } else if (this.readyState == XMLHttpRequest.DONE && this.status != 201) 
                 {
                     reject();
                 }
@@ -31,6 +31,7 @@ class Request
 
         return traitement;
     }
+
 
     get(action) 
     {
@@ -56,7 +57,7 @@ class Request
         {
             //Requête API
             request.open("GET", this.api + action);
-            //request.setRequestHeader("Authorization", "Bearer " + token);
+            request.setRequestHeader("Authorization", "Bearer " + token);
             request.send();
 
             return traitement;
@@ -67,6 +68,7 @@ class Request
         }
     }
 
+
     post(action, body) 
     {
         var request = new XMLHttpRequest();
@@ -75,33 +77,34 @@ class Request
         {
             request.onreadystatechange = function () 
             {
-                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) 
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 201) 
                 {
                     resolve(JSON.parse(this.responseText));
-                } else if (this.readyState == XMLHttpRequest.DONE && this.status != 200) 
+                } else if (this.readyState == XMLHttpRequest.DONE && this.status != 201) 
                 {
                     reject();
                 }
             };
         });
-/*
+
         //Get token
         var token = sessionStorage.getItem("token");
         if(token != null)
-        {*/
+        {
             //Requête API
             request.open("POST", this.api + action);
             request.setRequestHeader("Content-Type", "application/json");
-            //request.setRequestHeader("Authorization", "Bearer " + token);
+            request.setRequestHeader("Authorization", "Bearer " + token);
             request.send(JSON.stringify(body));
 
-            return traitement;/*
+            return traitement;
         }
         else
         {
             window.location.assign("./connexion.html");
-        }*/
+        }
     }
+
 
     put(action, body) 
     {
@@ -121,24 +124,24 @@ class Request
             };
         });
 
-/*
         //Get token
         var token = sessionStorage.getItem("token");
         if(token != null)
-        {*/
+        {
             //Requête API
-            request.open("POST", this.api + action);
+            request.open("PUT", this.api + action);
             request.setRequestHeader("Content-Type", "application/json");
-            //request.setRequestHeader("Authorization", "Bearer " + token);
+            request.setRequestHeader("Authorization", "Bearer " + token);
             request.send(JSON.stringify(body));
 
-            return traitement;/*
+            return traitement;
         }
         else
         {
             window.location.assign("./connexion.html");
-        }*/
+        }
     }
+
 
     delete(action) 
     {
@@ -158,22 +161,22 @@ class Request
             };
         });
 
-/*
+
         //Get token
         var token = sessionStorage.getItem("token");
         if(token != null)
-        {*/
+        {
             //Requête API
-            request.open("POST", this.api + action);
+            request.open("DELETE", this.api + action);
             request.setRequestHeader("Content-Type", "application/json");
-            //request.setRequestHeader("Authorization", "Bearer " + token);
+            request.setRequestHeader("Authorization", "Bearer " + token);
             request.send(JSON.stringify(body));
 
-            return traitement;/*
+            return traitement;
         }
         else
         {
             window.location.assign("./connexion.html");
-        }*/
+        }
     }
 }
