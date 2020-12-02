@@ -2,31 +2,31 @@ class Discussion extends Request
 {
     getAll()
     {
-        return this.get("discussion");
+        return super.get("discussion");
     }
 
     getOne(id)
     {
-        return this.get("discussion/" + id);
+        return super.get("discussion/" + id);
     }
 
     getAllLimit()
     {
-        return this.get("lastDiscussion");
+        return super.get("lastDiscussion");
     }
 
     create(body)
     {
-        return this.post("discussion", body);
+        return super.post("discussion", body);
     }
 
     update(id, body)
     {
-        return this.put("discussion/" + id, body);
+        return super.put("discussion/" + id, body);
     }
 
     delete(id)
     {
-        return this.delete("discussion/" + id);
+        return super.delete("discussion/" + id);
     }
 }

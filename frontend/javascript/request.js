@@ -5,7 +5,7 @@ class Request
         this.api="http://localhost:3000/api/";
     }
 
-    postConnect(action, body) 
+    postSignup(action, body) 
     {
         var request = new XMLHttpRequest();
 
@@ -17,6 +17,33 @@ class Request
                 {
                     resolve(JSON.parse(this.responseText));
                 } else if (this.readyState == XMLHttpRequest.DONE && this.status != 201) 
+                {
+                    reject();
+                }
+            };
+        });
+
+
+        //Requête API
+        request.open("POST", this.api + action);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(JSON.stringify(body));
+
+        return traitement;
+    }
+
+    postConnect(action, body) 
+    {
+        var request = new XMLHttpRequest();
+
+        const traitement = new Promise((resolve, reject) => 
+        {
+            request.onreadystatechange = function () 
+            {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) 
+                {
+                    resolve(JSON.parse(this.responseText));
+                } else if (this.readyState == XMLHttpRequest.DONE && this.status != 200) 
                 {
                     reject();
                 }
@@ -168,9 +195,8 @@ class Request
         {
             //Requête API
             request.open("DELETE", this.api + action);
-            request.setRequestHeader("Content-Type", "application/json");
             request.setRequestHeader("Authorization", "Bearer " + token);
-            request.send(JSON.stringify(body));
+            request.send();
 
             return traitement;
         }

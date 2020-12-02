@@ -2,17 +2,17 @@ class User extends Request
 {
     signup(signupBody)
     {
-        return this.postConnect("user/signup", signupBody);
+        return super.postSignup("user/signup", signupBody);
     }
 
     login(loginBody)
     {
-        return this.postConnect("user/login", loginBody);
+        return super.postConnect("user/login", loginBody);
     }
 
     getName(userId)
     {
-        return this.get("user/getName/" + userId);
+        return super.get("user/getName/" + userId);
     }
 }
 

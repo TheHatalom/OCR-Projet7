@@ -2,11 +2,11 @@ class Message extends Request
 {
     create(body)
     {
-        return this.post("message", body);
+        return super.post("message", body);
     }
 
     delete(id)
     {
-        return this.delete("message/" + id);
+        return super.delete("message/" + id);
     }
 }

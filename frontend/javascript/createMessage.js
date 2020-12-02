@@ -18,7 +18,7 @@ var message;
         messageManager.create(body).then((result) =>
         {
             //redirection vers la page de détail de la discussion
-            window.location.assign("./detailDiscussion.html?Id=" + result.id);
+            window.location.assign("./detailDiscussion.html?Id=" + discussionId);
         })
         .catch(() =>
         {

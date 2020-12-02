@@ -91,7 +91,7 @@ exports.create = (req, res, next) =>
 
 exports.modify = (req, res, next) => 
 {
-    console.log(req.body);
+    console.log("req : " + req.body.message);
     const discussionObject = req.body;
     Discussion.update(
     { 

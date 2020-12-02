@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 const User = require('../models/User');
+const Admin = require('../models/Admin');
 
 
 exports.signup = (req, res, next) => 
@@ -34,7 +35,11 @@ exports.signup = (req, res, next) =>
 
 exports.login = (req, res, next) => 
 {
-    User.findOne({ where: {email: req.body.email }})
+    User.findOne( 
+    {
+        include: [Admin],
+        where: {email: req.body.email }
+    })
     .then(user => 
     {
         if (!user) 
