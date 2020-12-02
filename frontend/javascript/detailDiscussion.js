@@ -11,7 +11,6 @@ sessionStorage.setItem("discussionId", idElt);
 
 discussionManager.getOne(idElt).then((result) =>
 {
-    console.log(result.Messages);
     var para = document.createElement("p");
     para.setAttribute("class", "row-6 index-desc");
     para.innerHTML = 'Titre : '+ result.title + '<br><br>Message : '+ result.message;
@@ -45,8 +44,9 @@ discussionManager.getOne(idElt).then((result) =>
         if(userId == message.User.id) //peut etre à changer comme discussion
         {
             var btnDeleteMessage = document.createElement("button");
-            btnDeleteMessage.setAttribute("class", "btn btn-primary");
+            btnDeleteMessage.setAttribute("class", "deleteMessage btn btn-primary");
             btnDeleteMessage.setAttribute("id", "deleteMessageBtn");
+            btnDeleteMessage.setAttribute("data-id", message.id);
             btnDeleteMessage.innerHTML = 'Supprimer le message';
         }
 
