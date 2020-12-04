@@ -2,7 +2,6 @@ var discussionManager = new Discussion();
 
 discussionManager.getAll().then((result) =>
 {
-    console.log(result);
     for(let discussion of result)
     {
         var para = document.createElement("p");

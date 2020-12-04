@@ -40,18 +40,23 @@ discussionManager.getOne(idElt).then((result) =>
         para2.setAttribute("class", "row-6 index-desc");
         para2.innerHTML = 'Message de  : ' + username + '<br>' + message.message;
 
+        document.getElementById("detailDiscussion").appendChild(para2);
+
         var userId = sessionStorage.getItem("userId");
         if(userId == message.User.id) //peut etre à changer comme discussion
         {
             var btnDeleteMessage = document.createElement("button");
-            btnDeleteMessage.setAttribute("class", "deleteMessage btn btn-primary");
-            btnDeleteMessage.setAttribute("id", "deleteMessageBtn");
-            btnDeleteMessage.setAttribute("data-id", message.id);
+            btnDeleteMessage.setAttribute("class", "btn btn-primary");
+            btnDeleteMessage.setAttribute("id", "deleteMessageBtn" + message.id);
+            //btnDeleteMessage.setAttribute("data-id", message.id);
             btnDeleteMessage.innerHTML = 'Supprimer le message';
-        }
+            document.getElementById("detailDiscussion").appendChild(btnDeleteMessage);
 
-        document.getElementById("detailDiscussion").appendChild(para2);
-        document.getElementById("detailDiscussion").appendChild(btnDeleteMessage);
+            document.getElementById('deleteMessageBtn' + message.id).addEventListener("click", function()
+            {
+                deleteMessage(message.id);
+            }); 
+        }
     }
 })
 .catch(() =>
