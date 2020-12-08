@@ -1,6 +1,6 @@
 var discussionManager = new Discussion();
 
-//get l'id de la discussion dans le sessionStorage
+//Récupère l'id de la discussion dans le sessionStorage
 discussionId = sessionStorage.getItem("discussionId");
 
 var title;
@@ -12,11 +12,14 @@ var userId = sessionStorage.getItem("userId");
 {
     document.getElementById('updateDiscussionBtn').addEventListener("click", function()
     {
+        //Récupère les valeurs de la discussion dans les champs
         title = document.getElementById('title').value;
         message = document.getElementById('message').value;
 
+        //Création du body
         body = { "title":title, "message":message, "userId":userId };
 
+        //Modification d'une discussion
         discussionManager.update(discussionId, body).then((result) =>
         {
             //redirection vers la page de détail de la discussion

@@ -1,0 +1,1 @@
+INSERT INTO `groupomania_role` (`id`, `role`, `code`, `createdAt`, `updatedAt`) VALUES (NULL, 'member', 'mbr', '2020-12-08 00:00:00', '2020-12-08 00:00:00'), (NULL, 'admin', 'adm', '2020-12-08 00:00:00', '2020-12-08 00:00:00');

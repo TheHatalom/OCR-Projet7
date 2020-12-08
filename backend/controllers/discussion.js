@@ -3,6 +3,7 @@ const Message = require('../models/Message');
 const User = require('../models/User');
 const fs = require('fs');
 
+//Récupération d'une discussion
 exports.getOne = (req, res, next) => 
 {   
     Discussion.findOne(
@@ -28,6 +29,7 @@ exports.getOne = (req, res, next) =>
     });
 }; 
 
+//Récupération de toutes les discussions
 exports.getAll = (req, res, next) => 
 {
     Discussion.findAll().then((discussion) => 
@@ -43,6 +45,7 @@ exports.getAll = (req, res, next) =>
     });
 };
 
+//Récupération des 5 dernières discussions
 exports.getAllLimit = (req, res, next) => 
 {
     //add number of element to return if limit parameter is send
@@ -65,6 +68,7 @@ exports.getAllLimit = (req, res, next) =>
 
 };
 
+//Création d'une discussion
 exports.create = (req, res, next) => 
 {
     console.log(req.body);
@@ -89,6 +93,7 @@ exports.create = (req, res, next) =>
     });
 };
 
+//Modification d'une discussion
 exports.modify = (req, res, next) => 
 {
     console.log("req : " + req.body.message);
@@ -111,6 +116,7 @@ exports.modify = (req, res, next) =>
     }));
 };
 
+//Suppression d'une discussion
 exports.delete = (req, res, next) => 
 {
     Discussion.findOne(

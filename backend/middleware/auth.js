@@ -1,19 +1,19 @@
 const jwt = require('jsonwebtoken');
 
+//Middleware d'authentification
 module.exports = (req, res, next) => 
 {
     try 
     {
         const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-        const userId = decodedToken.userId;
-        if (req.body.userId && req.body.userId !== userId) 
+        try
         {
-            throw 'Invalid user ID';
-        } 
-        else 
+            jwt.verify(token, 'GROUPOMANIATOKEN');
+            next();
+        }
+        catch
         {
-        next();
+            throw new Error('Invalid user ID');
         }
     } 
     catch 

@@ -8,14 +8,7 @@ discussionId = sessionStorage.getItem("discussionId");
 {
     document.getElementById('deleteDiscussionBtn').addEventListener("click", function()
     {
-        discussionManager.delete(discussionId).then(() =>
-        {
-            //redirection vers la page des discussion
-            window.location.assign("./listDiscussion.html");
-        })
-        .catch(() =>
-        {
-            console.log("ERREUR dans la requête DELETE !");
-        });
+        //Appel fonction suppression messages de la discussion
+        delAllMessage(discussionId);
     });
 })();

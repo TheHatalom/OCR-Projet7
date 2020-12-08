@@ -4,6 +4,7 @@ const {Sequelize, Model, DataTypes} = require('sequelize');
 const bodyParser = require('body-parser');
 const app = express();
 
+//Import des routes
 const userRoutes = require('./routes/user');
 const discussionRoutes = require('./routes/discussion');
 const lastDiscussionRoutes = require('./routes/lastDiscussion');

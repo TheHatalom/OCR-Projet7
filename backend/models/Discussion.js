@@ -3,9 +3,10 @@ const sequelize = require('../connection');
 
 const User = require('./User')
 
+//Modèle Discussion
 const Discussion = sequelize.define('Discussion',
 {
-    // Model attributes are defined here
+    //Les attributs du modèle
     id:
     {
         type:DataTypes.INTEGER,
@@ -13,16 +14,20 @@ const Discussion = sequelize.define('Discussion',
         primaryKey:true,
         autoIncrement:true
     },
-    // Model attributes are defined here
     title:
     {
         type:DataTypes.STRING(50),
         allowNull:false,
-        unique:true
+        unique:true 
     },
     message:
     {
         type:DataTypes.STRING(10000),
+        allowNull:false
+    },
+    userId:
+    {
+        type:DataTypes.INTEGER,
         allowNull:false
     }
 }, 
@@ -30,9 +35,11 @@ const Discussion = sequelize.define('Discussion',
     tableName:"groupomania_discussion"
 });
 
+//Liaison avec le modèle User
 Discussion.belongsTo(User, {foreignKey: 'userId'});
 User.hasMany(Discussion, {foreignKey: 'userId'});
 
+//Export du modèle
 module.exports = Discussion;
 
 // le modèle défini correspond à la classe lui-même

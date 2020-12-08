@@ -1,11 +1,12 @@
 var discussionManager = new Discussion();
 
+//Récupère les dernières discussions
 discussionManager.getAllLimit().then((result) =>
 {
     for(let discussion of result)
     {
         var para = document.createElement("p");
-        para.setAttribute("class", "col-6 index-desc");
+        para.setAttribute("class", "text-center last-discussion");
         para.innerHTML = 'Discussion : '+ discussion.title;
 
         document.getElementById("lastDiscussion").appendChild(para);

@@ -4,9 +4,12 @@ const auth = require('../middleware/auth');
 
 const messageCtrl = require('../controllers/message');
 
-router.get('/', messageCtrl.getAll);
-router.post('/', messageCtrl.create);
-router.put('/:id', messageCtrl.modify);
-router.delete('/:id', messageCtrl.delete);
+//Création des routes
+router.get('/', auth, messageCtrl.getAll);
+router.post('/', auth, messageCtrl.create);
+router.put('/:id', auth, messageCtrl.modify);
+router.delete('/:id', auth, messageCtrl.delete);
+router.delete('/deleteAll/:discussionId', auth, messageCtrl.deleteAll);
 
+//Export du modèle
 module.exports = router;

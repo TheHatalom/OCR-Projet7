@@ -4,17 +4,20 @@ var messageManager = new Message();
 var discussionId = sessionStorage.getItem("discussionId");
 
 var message;
-//var userId = sessionStorage.getItem("userId");
+var userId = sessionStorage.getItem("userId");
 
 // IIFE function -> appelée quand elle est créée
 (function()
 {
     document.getElementById('createMessageBtn').addEventListener("click", function()
     {
+        //Récupère les valeurs de la discussion dans les champs
         message = document.getElementById('message').value;
 
-        body = { "message":message, "discussionId":discussionId, "userId":1/*userId*/ };
+        //Création du body
+        body = { "message":message, "discussionId":discussionId, "userId":userId };
 
+        //Création d'un message
         messageManager.create(body).then((result) =>
         {
             //redirection vers la page de détail de la discussion

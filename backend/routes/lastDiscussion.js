@@ -4,7 +4,8 @@ const auth = require('../middleware/auth');
 
 const discussionCtrl = require('../controllers/discussion');
 
-router.get('/', discussionCtrl.getAllLimit);
+//Création de la route
+router.get('/', auth, discussionCtrl.getAllLimit);
 
-
+//Export de la route
 module.exports = router;

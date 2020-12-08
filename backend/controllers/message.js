@@ -1,6 +1,7 @@
 const Message = require('../models/Message');
 const fs = require('fs');
 
+//Récupération de tous les messages
 exports.getAll = (req, res, next) => 
 {
     Message.findAll().then((message) => 
@@ -17,6 +18,7 @@ exports.getAll = (req, res, next) =>
     });
 };
 
+//Création d'un message
 exports.create = (req, res, next) => 
 {
     console.log(req.body);
@@ -29,7 +31,7 @@ exports.create = (req, res, next) =>
     .then((result) => res.status(201).json(
     {
         id: result.id,
-        message: 'Message enregistrée !'
+        message: 'Message enregistré !'
     }))
     .catch(error => res.status(400).json(
     { 
@@ -37,6 +39,7 @@ exports.create = (req, res, next) =>
     }));
 };
 
+//Modification d'une message
 exports.modify = (req, res, next) => 
 {
     const messageObject = req.body;
@@ -49,7 +52,7 @@ exports.modify = (req, res, next) =>
     })
     .then(() => res.status(200).json(
     { 
-        message: 'Message modifiée !'
+        message: 'Message modifié !'
     }))
     .catch(error => res.status(400).json(
     { 
@@ -57,6 +60,7 @@ exports.modify = (req, res, next) =>
     }));
 };
 
+//Suppression d'un message
 exports.delete = (req, res, next) => 
 {
     Message.findOne(
@@ -69,7 +73,28 @@ exports.delete = (req, res, next) =>
     })
     .then(() => res.status(200).json(
     { 
-        message: 'Message suprimée !'
+        message: 'Message suprimé !'
+    }))
+    .catch(error => res.status(500).json(
+    { 
+        error: error
+    }));
+};
+
+//Suppression de tous les messages
+exports.deleteAll = (req, res, next) => 
+{
+    Message.findAll(
+    {
+        where: {discussionId: req.params.discussionId}
+    })
+    Message.destroy(
+    {
+        where: {discussionId: req.params.discussionId}
+    })
+    .then(() => res.status(200).json(
+    { 
+        message: 'Messages suprimés !'
     }))
     .catch(error => res.status(500).json(
     { 

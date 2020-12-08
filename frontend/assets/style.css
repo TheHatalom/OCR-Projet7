@@ -1,16 +1,161 @@
-/*body
-{
-    background-image: url("./images/icon.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
-}*/
+/* --- NAVBAR ---*/
 
 .logo
 {
-    height: 80px;
+    width: 150px;
+}
+.navbar-dark
+{
+    background-color: #091F43!important;
+    margin-bottom: 100px;
 }
 
-.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active
+
+
+/* ----------------------- ACCUEIL ----------------------- */
+
+h1, h3, h6
 {
     color: #091F43;
+}
+.last-discussion
+{
+    color: #091F43;
+    border: solid 2px #D1515A;
+    font-size: x-large;
+    font-weight: 500;
+    border-radius: 20px;
+}
+
+
+
+/* ----------------------- DISCUSSIONS ----------------------- */
+
+.btn-primary
+{
+    height: 38px;
+}
+.btn-primary:hover, .btn-primary:focus
+{
+    background-color: #FFFFFF;
+    color: #091F43;
+    border-color: #091F43;
+}
+.btn-danger, .btn-danger
+{
+    background-color: #D1515A;
+    border-color: #D1515A;
+}
+.list-discussion
+{
+    width: 100%;
+    justify-content: space-between;
+}
+.all-discussion
+{
+    padding: 20px;
+    border: 2px solid #D1515A;
+    color: #091F43;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+.title-discussion
+{
+    margin: 0;
+    height: auto;
+    width: 60%;
+    text-align: left;
+}
+
+
+
+/* ----------------------- DETAIL DISCUSSIONS ----------------------- */
+
+.detail-title
+{
+    font-size: 25px;
+    color: #091F43;
+    margin-bottom: 50px;
+}
+.detail-discussion-messages
+{
+    margin-bottom: 70px;
+}
+.message-detail-discussion
+{
+    position: relative;
+    background-color: #BEBDB4;
+    border: 1px solid #091F43;
+    color: #091F43;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px 0px 10px 20px;
+}
+.bold
+{
+    font-weight: bold;
+}
+.all-message
+{
+    width: 85%;
+}
+.btn-light
+{
+    padding: 0px 10px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+}
+.btn-light:hover
+{
+    background-color: #D1515A;
+}
+
+
+
+/* ----------------------- ADMIN ----------------------- */
+
+.change-role-btn
+{
+    margin-right: 10px;
+}
+#listUser
+{
+    margin-bottom: 100px;
+}
+
+
+
+
+
+/* ----------------------- TAILE SMARTPHONE ----------------------- */
+
+@media screen and (max-width: 576px) 
+{
+    .all-discussion
+    {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+    .title-discussion
+    {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .all-discussion .btn
+    {
+        width: 164px;
+        margin: auto;
+    }
+    #updateDiscussionBtn, .change-role-btn
+    {
+        margin-bottom: 10px;
+    }
 }

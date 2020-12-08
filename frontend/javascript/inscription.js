@@ -8,14 +8,18 @@ var signupBody;
 // IIFE function -> appelée quand elle est créée
 (function()
 {
+
     document.getElementById('signupBtn').addEventListener("click", function()
     {
+        //Récupère les valeurs du user dans les champs
         username = document.getElementById('username').value;
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
 
+        //Création du body
         signupBody = { "username":username, "email":email, "password":password };
 
+        //Reqête de création d'un user
         userManager.signup(signupBody).then(() =>
         {
             //redirection vers la page de connexion

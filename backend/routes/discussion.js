@@ -4,11 +4,13 @@ const auth = require('../middleware/auth');
 
 const discussionCtrl = require('../controllers/discussion');
 
-router.get('/limit', discussionCtrl.getAllLimit);
-router.get('/:id', discussionCtrl.getOne);
-router.get('/', discussionCtrl.getAll);
-router.post('/', discussionCtrl.create);
-router.put('/:id', discussionCtrl.modify);
-router.delete('/:id', discussionCtrl.delete);
+//Création des routes
+router.get('/limit', auth, discussionCtrl.getAllLimit);
+router.get('/:id', auth, discussionCtrl.getOne);
+router.get('/', auth, discussionCtrl.getAll);
+router.post('/', auth, discussionCtrl.create);
+router.put('/:id', auth, discussionCtrl.modify);
+router.delete('/:id', auth, discussionCtrl.delete);
 
+//Export des routes
 module.exports = router;

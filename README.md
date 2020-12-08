@@ -1,1 +1,1 @@
-# OCR-Projet7
+# OCR-Projet7 avec NodeJS et Sequelize

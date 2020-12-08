@@ -1,9 +1,12 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../connection');
 
+const Role = require('./Role');
+
+//Modèle User
 const User = sequelize.define('User',
 {
-    // Model attributes are defined here
+    //Les attributs du modèle
     id:
     {
         type:DataTypes.INTEGER,
@@ -16,7 +19,7 @@ const User = sequelize.define('User',
         type:DataTypes.STRING(30),
         allowNull:false,
         unique:true
-    },
+    }, 
     email:
     {
         type:DataTypes.STRING,
@@ -27,12 +30,23 @@ const User = sequelize.define('User',
     {
         type:DataTypes.STRING,
         allowNull:false
+    },
+    idRole:
+    {
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        defaultValue:1
     }
 }, 
 {
     tableName:"groupomania_users"
 });
 
+//Liaison avec le modèle Rôle
+User.belongsTo(Role, {foreignKey: 'idRole'});
+Role.hasMany(User, {foreignKey: 'idRole'});
+
+//Export du modèle
 module.exports = User;
 
 // le modèle défini correspond à la classe lui-même

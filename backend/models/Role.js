@@ -1,11 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../connection');
 
-const User = require('./User')
-
-const Admin = sequelize.define('Admin',
+//Modèle Rôle
+const Role = sequelize.define('Role',
 {
-    // Model attributes are defined here
+    //Les attributs du modèle
     id:
     {
         type:DataTypes.INTEGER,
@@ -16,27 +15,23 @@ const Admin = sequelize.define('Admin',
     role:
     {
         type:DataTypes.STRING(30),
-        allowNull:false,
-        defaultValue:"member"
+        allowNull:false
     },
     code:
     {
         type:DataTypes.STRING(3),
-        allowNull:false,
-        defaultValue:"mbr"
+        allowNull:false
     }
 }, 
 {
-    tableName:"groupomania_admin"
+    tableName:"groupomania_role"
 });
 
-Admin.belongsTo(User, {foreignKey: 'userId'});
-User.hasOne(Admin, {foreignKey: 'userId'});
-
-module.exports = Admin;
+//Export du modèle
+module.exports = Role;
 
 // le modèle défini correspond à la classe lui-même
-console.log(Admin === sequelize.models.Admin); // true
+console.log(Role === sequelize.models.Role); // true
 
 // synchronise les nouvelles valeurs avec les valeurs actuelles
-Admin.sync(/*{ alter:true }*/);
+Role.sync(/*{ alter:true }*/);

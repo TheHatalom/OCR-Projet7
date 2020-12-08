@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 const User = require('../models/User');
-const Admin = require('../models/Admin');
+const Role = require('../models/Role');
 
-
+//Création d'un user
 exports.signup = (req, res, next) => 
 { 
     bcrypt.hash(req.body.password, 10)
@@ -33,14 +33,15 @@ exports.signup = (req, res, next) =>
     }));
 };
 
+//Connexion d'une user
 exports.login = (req, res, next) => 
 {
     User.findOne( 
     {
-        include: [Admin],
-        where: {email: req.body.email }
+        where: {email: req.body.email },
+        include: [{model: Role}]
     })
-    .then(user => 
+    .then(user =>
     {
         if (!user) 
         {
@@ -49,6 +50,7 @@ exports.login = (req, res, next) =>
                 error: 'Utilisateur non trouvé !' 
             });
         }
+        console.log(user);
         bcrypt.compare(req.body.password, user.password)
         .then(valid => 
         {
@@ -61,10 +63,11 @@ exports.login = (req, res, next) =>
             }
             res.status(200).json(
             {
+                role: user.Role.code,
                 userId: user.id,
                 token: jwt.sign(
                 { userId: user._id },
-                'RANDOM_TOKEN_SECRET',
+                'GROUPOMANIATOKEN',
                 { expiresIn: '24h' })
             });
         })
@@ -79,22 +82,62 @@ exports.login = (req, res, next) =>
     }));
 };
 
-exports.getName = (req, res, next) => 
+//Récupération de tous les users
+exports.getAll = (req, res, next) => 
 {
-    User.findOne(
+    User.findAll().then((user) => 
     {
-        where: {id: req.params.id}
+        res.status(200).json(user);
     })
-    .then((user) => 
-    {
-        res.status(200).json(user.username);
-    }
-    )
     .catch((error) => 
     {
-        res.status(404).json(
+        res.status(400).json(
         {
             error: error
         });
     });
+};
+
+
+//Modification d'un user
+exports.modify = (req, res, next) => 
+{
+    const userObject = req.body;
+    User.update(
+    { 
+        ...userObject
+    }, 
+    { 
+        where: {id: req.params.id} 
+    })
+    .then((result) => res.status(200).json(
+    {
+        id: result.id,
+        message: "Rôle de l'utilisateur modifié !"
+    }))
+    .catch(error => res.status(400).json(
+    { 
+        error: error
+    }));
+};
+
+//Suppression d'un user
+exports.delete = (req, res, next) => 
+{
+    User.findOne(
+    { 
+        _id: req.params.id 
+    })
+    User.destroy(
+    {
+        where: {id: req.params.id}
+    })
+    .then(() => res.status(200).json(
+    { 
+        message: 'Utilisateur suprimé !'
+    }))
+    .catch(error => res.status(500).json(
+    { 
+        error: error
+    }));
 };

@@ -39,21 +39,6 @@
             </ul>
         </nav>
 
-
-
-        <div class="title">
-            <div class="container text-center">
-                <h1>Bienvenue sur le panel d'administration</h1>
-            </div>
-
-            <br>
-
-            <div class="container text-center">
-                <h3>Ci-dessous vous trouverez tous les utilisateurs du réseau social</h3>
-                <h6>(Cette page est réservée aux administrateurs)</h6>
-            </div>
-        </div>
-
         <br>
         <br>
 
@@ -61,10 +46,26 @@
             <div class="col text-center" id="listUser"></div>
         </div>
 
+
+        <div class="container col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+            <select id="selectRole" class="form-control">
+                <option id="actualRole"></option>
+                <option id="choixMembre" value="membre">membre</option>
+                <option id="choixAdmin" value="admin">admin</option>
+            </select>
+
+            <br>
+    
+            <button class="btn btn-primary" id="changeRoleValidate">Test</button>
+        </div>
+
+        <br>
+        <br>
+
         <script src="../javascript/request.js"></script>
         <script src="../javascript/user.js"></script>
-        <script src="../javascript/admin.js"></script>
-        <script src="../javascript/deleteUser.js"></script>
+        <script src="../javascript/changeRoleUser.js"></script>
+        <script src="../javascript/changeRoleValidate.js"></script>
         <script src="../javascript/deconnexion.js"></script>
     </body>
 </html>
