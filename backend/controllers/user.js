@@ -8,6 +8,10 @@ const Role = require('../models/Role');
 //Création d'un user
 exports.signup = (req, res, next) => 
 { 
+    if (req.body.password.length < 8) 
+    {
+        return res.status(400).json({error : 'Too short password !'});
+    }
     bcrypt.hash(req.body.password, 10)
     .then(hash => 
     {

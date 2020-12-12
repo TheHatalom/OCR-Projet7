@@ -9,26 +9,32 @@ var signupBody;
 (function()
 {
 
-    document.getElementById('signupBtn').addEventListener("click", function()
+    document.getElementById('signupBtn').addEventListener("click", function(e)
     {
         //Récupère les valeurs du user dans les champs
         username = document.getElementById('username').value;
         email = document.getElementById('email').value;
         password = document.getElementById('password').value;
 
-        //Création du body
-        signupBody = { "username":username, "email":email, "password":password };
 
-        //Reqête de création d'un user
-        userManager.signup(signupBody).then(() =>
+        if(document.getElementById("form").checkValidity())
         {
-            //redirection vers la page de connexion
-            window.location.assign("./connexion.html");
-        })
-        .catch(() =>
-        {
-            console.log("ERREUR dans la requête POST signup !");
-        });
+            //Création du body
+            signupBody = { "username":username, "email":email, "password":password };
+
+            //Reqête de création d'un user
+            userManager.signup(signupBody).then(() =>
+            {
+                //redirection vers la page de connexion
+                window.location.assign("./connexion.html");
+            })
+            .catch(() =>
+            {
+                console.log("ERREUR dans la requête POST signup !");
+            });
+        }
+        e.stopPropagation();
+        return false;
     });
 })();
 
