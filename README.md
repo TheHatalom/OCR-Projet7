@@ -1,9 +1,9 @@
 # OCR-Projet7 avec NodeJS et Sequelize
 
-## 1 - Install NodeJS, sequelize and nodemon
+## 1 - Installer NodeJS, sequelize and nodemon
 
-## 2 - "cd ./backend" to go in the backend folder
+## 2 - Aller dans le fichier backend : "cd ./backend"
 
-## 3 - "nodemon server" to run the server
+## 3 - Lancer le server : "nodemon server"
 
-## 4 - Un export de la base de données est disponible dans backend/groupomania.sql
+## 4 - Faire un import de la base de donnée exportée disponible dans backend/groupomania.sql
